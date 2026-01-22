@@ -1,1 +1,9 @@
-console.log("Hello World, and welcome to my API Rest");
+import express from "express";
+
+const app = express();
+const port = 3000;
+
+//Lanza el servidor
+app.listen(port, () => {
+    console.log("Server running on port: " + port);
+});
