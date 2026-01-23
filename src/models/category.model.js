@@ -6,16 +6,18 @@ const CategorySchema = new mongoose.Schema({
     name: {
         // Jugos en agua
         type: String,
-        required: true,
-        minlength: 3,
+        required: [true, 'El nombre de la categoria es obligatorio,'],
+        minlength: [3, 'El nombre de la categoria debe tener al menos 3 caracteres'],
     },
     slug: {
         // jugos-en-agua
         type: String,
-        required: true,
+        required: [true, 'El slug de la categoria es obligatorio,'],
+        unique: true,
     },
     description: {
         type: String,
+        required: [true, 'La descripcion de la categoria es obligatoria,'],
     }
 },
 // Configuración de la estrucutura de datos
