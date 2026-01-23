@@ -4,13 +4,18 @@ const CategorySchema = new mongoose.Schema({
     // Estructura de datos del documento
     // TODO: Personalizar los mensajes de error para cada campo
     name: {
+        // Jugos en agua
         type: String,
         required: true,
         minlength: 3,
     },
     slug: {
+        // jugos-en-agua
         type: String,
         required: true,
+    },
+    description: {
+        type: String,
     }
 },
 // Configuración de la estrucutura de datos

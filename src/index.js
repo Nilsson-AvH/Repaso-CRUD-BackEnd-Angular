@@ -8,6 +8,9 @@ const port = 3000;
 //Conectar a la base de datos
 dbConexion();
 
+// Habilitar el body parser o interprete de JSON desde postman
+app.use(express.json());
+
 //Definir la ruta base a los routers
 app.use('/api/categories', categoriesRoute);
 
