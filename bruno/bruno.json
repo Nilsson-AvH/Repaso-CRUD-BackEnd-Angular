@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Repaso-CRUD-BackEnd-FrontEnd-bruno",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
