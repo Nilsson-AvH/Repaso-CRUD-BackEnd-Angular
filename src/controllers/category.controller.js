@@ -1,5 +1,5 @@
 import generateSlug from "../helpers/slug.helper.js";
-import { dbCreateCategory, dbDeleteCategoryById, dbGetAllCategories } from "../services/category.service.js";
+import { dbCreateCategory, dbDeleteCategoryById, dbGetAllCategories, dbGetCategoryById, dbUpdateCategoryById } from "../services/category.service.js";
 
 const createCategory = async (req, res) => {
     try {
@@ -22,6 +22,26 @@ const createCategory = async (req, res) => {
         });
     }
 };
+
+const getCategoryById = async (req, res) => {
+    try {
+        // 1. Extraemos el id de la categoria a obtener
+        const id =req.params.id;
+        
+        // 2. Llamamos al servicio para obtener la categoria
+        const data = await dbGetCategoryById(id);
+        
+        // 3. Enviamos la respuesta al cliente
+        res.json(data);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error al obtener la categoria',
+            error
+        });
+    }
+}
 
 const getAllCategories = async (req, res) => {
     try {
@@ -60,8 +80,35 @@ const deleteCategoryById = async (req, res) => {
     }
 };
 
+const updateCategoryById = async (req, res) => {
+    try {
+        // 1. Extraemos el id de la categoria a actualizar
+        const id = req.params.id;
+        const inputData = req.body;
+
+        // 2. Generamos el slug a partir del nombre de la categoria
+        inputData.slug = generateSlug(inputData.name);
+
+        
+        // 2. Llamamos al servicio para actualizar la categoria
+        const data = await dbUpdateCategoryById(id, req.body);
+        
+        // 3. Enviamos la respuesta al cliente
+        res.json(data); 
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error al actualizar la categoria',
+            error
+        });
+    }
+};
+
 export {
     createCategory,
+    getCategoryById,
     getAllCategories,
-    deleteCategoryById
+    deleteCategoryById,
+    updateCategoryById
 };
